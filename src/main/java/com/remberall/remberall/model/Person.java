@@ -92,3 +92,17 @@ public class Person implements Comparable<Person> {
         return this.birthday.compareTo(other.birthday);
     }
 }
+
+//List<Person> persons = personDAO.getAllPersons();
+//
+//// Sort by name:
+//persons.sort(Comparator.comparing(Person::getName));
+//
+//// Sort by recent contact:
+//        persons.sort(Comparator.comparing(Person::getLastMeetingDate).reversed());
+//
+//// Sort by old contact:
+//        persons.sort(Comparator.comparing(Person::getLastMeetingDate));
+//
+//// Sort by birthday (default Comparable):
+//        Collections.sort(persons);  // uses compareTo
