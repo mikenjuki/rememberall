@@ -43,7 +43,6 @@ public class MainViewController {
         addPersonButton.setOnAction(event -> openAddPersonForm());
     }
 
-
     private void openAddPersonForm() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add-person.fxml"));
@@ -59,8 +58,4 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
-
-
-
-
 }

@@ -25,7 +25,7 @@ public class PersonController {
     private final PersonDAO personDAO = new PersonDAO();
     private final ObservableList<Person> personList = FXCollections.observableArrayList();
 
-    // Singleton instance
+    // singleton instance
     private static PersonController instance;
 
     public PersonController() {
@@ -130,6 +130,5 @@ public class PersonController {
                 .collect(Collectors.toList());
         personListView.setItems(FXCollections.observableArrayList(sorted));
     }
-
 
 }

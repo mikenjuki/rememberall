@@ -55,8 +55,6 @@ public class AddPersonController {
         });
     }
 
-
-
     @FXML
     private void handleSave() {
         if (nameField.getText().isEmpty() ||
@@ -81,7 +79,6 @@ public class AddPersonController {
         Person.RelationshipType relType = relationshipBox.getValue();
 
         if (editingPerson != null) {
-            // 🔁 Update existing person
             editingPerson.setName(name);
             editingPerson.setBirthday(birthday);
             editingPerson.setNotes(notes);
@@ -91,7 +88,6 @@ public class AddPersonController {
 
             personDAO.updatePerson(editingPerson);
         } else {
-
             Person newPerson = new Person(0, name, birthday, notes, interests, lastMeetingDate, relType);
             personDAO.insertPerson(newPerson);
         }
@@ -99,7 +95,6 @@ public class AddPersonController {
         PersonController.getInstance().refreshList();
         closeWindow();
     }
-
 
 
     @FXML
@@ -160,8 +155,6 @@ public class AddPersonController {
             }
         });
     }
-
-
 
     @FXML
     private void handleDeleteGift() {

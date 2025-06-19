@@ -5,7 +5,7 @@ public class GiftIdea {
     private int personId;//FK to person
     private String description;
     private double cost;
-    private String occasion; //like Birthday
+    private String occasion;
     private boolean	isBought;
     private boolean	isDelivered;
 

@@ -17,19 +17,19 @@
                 <HBox prefHeight="70.0" prefWidth="600.0" spacing="15" alignment="CENTER_LEFT" styleClass="topBar-hbox">
 
                 <children>
-                        <!-- new contact -->
+
                         <Button text="➕" fx:id="addPersonButton" />
 
-                        <!-- Search -->
+
                         <TextField promptText="🔍 Search" fx:id="searchTextField" />
 
-                        <!-- Filter -->
+
                     <ComboBox fx:id="sortOptionsBox" promptText="🧹" prefWidth="40" />
 
                 </children>
                 </HBox>
 
-                <!-- list of Persons -->
+
                 <fx:include source="person-list.fxml" />
 
 
