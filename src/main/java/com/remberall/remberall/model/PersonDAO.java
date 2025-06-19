@@ -25,7 +25,15 @@ public class PersonDAO {
                 String interestsString = rs.getString("interests");
                 List<String> interests = interestsString != null ? Arrays.asList(interestsString.split(",")) : new ArrayList<>();
                 LocalDate lastMeetingDate = rs.getDate("last_meeting_date") != null ? rs.getDate("last_meeting_date").toLocalDate() : null;
-                Person.RelationshipType relationshipType = Person.RelationshipType.valueOf(rs.getString("relationship_type").toUpperCase());
+                String relTypeStr = rs.getString("relationship_type");
+                Person.RelationshipType relationshipType;
+                try {
+                    relationshipType = relTypeStr != null
+                            ? Person.RelationshipType.valueOf(relTypeStr.toUpperCase())
+                            : Person.RelationshipType.UNKNOWN;
+                } catch (IllegalArgumentException e) {
+                    relationshipType = Person.RelationshipType.UNKNOWN;
+                }
 
                 Person person = new Person(id, name, birthday, notes, interests, lastMeetingDate, relationshipType);
                 persons.add(person);

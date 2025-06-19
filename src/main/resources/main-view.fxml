@@ -26,8 +26,10 @@
                     </children>
                 </HBox>
 
-                <!-- list of Persons (will hook to controller later) -->
-                <ListView fx:id="personListView" prefHeight="334.0" prefWidth="600.0" />
+                <!-- list of Persons -->
+                <fx:include source="person-list.fxml" />
+                <fx:include source="gift-idea-list.fxml" />
+
             </children>
         </VBox>
     </children>

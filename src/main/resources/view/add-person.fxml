@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="com.remberall.remberall.controller.AddPersonController">
+    <children>
+        <VBox alignment="CENTER" spacing="10" layoutX="20.0" layoutY="20.0" prefWidth="400.0">
+            <children>
+                <Label text="Add New Person" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                <TextField fx:id="nameField" promptText="Name" />
+                <DatePicker fx:id="birthdayPicker" promptText="Birthday" />
+                <TextArea fx:id="notesArea" promptText="Notes" />
+                <TextField fx:id="interestsField" promptText="Interests (comma-separated)" />
+                <DatePicker fx:id="lastMeetingDatePicker" promptText="Last Meeting Date" />
+                <ComboBox fx:id="relationshipBox" promptText="Relationship Type" />
+                <HBox alignment="CENTER" spacing="10">
+                    <children>
+                        <Button fx:id="saveButton" text="Save" onAction="#handleSave" />
+                        <Button text="Cancel" onAction="#handleCancel" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

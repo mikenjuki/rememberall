@@ -14,7 +14,7 @@ public class Person implements Comparable<Person> {
 
     // enum for relationship type
     public enum RelationshipType {
-        FAMILY, FRIEND, COLLEAGUE, OTHER
+        FAMILY, FRIEND, COLLEAGUE, OTHER, UNKNOWN
     }
 
     public Person(int id, String name, LocalDate birthday, String notes, List<String> interests,
@@ -90,6 +90,10 @@ public class Person implements Comparable<Person> {
     @Override
     public int compareTo(Person other) {
         return this.birthday.compareTo(other.birthday);
+    }
+@Override
+    public String toString() {
+        return name + " (" + relationshipType + ")";
     }
 }
 
