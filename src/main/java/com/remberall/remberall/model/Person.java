@@ -2,6 +2,7 @@ package com.remberall.remberall.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Person implements Comparable<Person> {
     private int id;
@@ -12,7 +13,6 @@ public class Person implements Comparable<Person> {
     private LocalDate lastMeetingDate;
     private RelationshipType relationshipType;
 
-    // enum for relationship type
     public enum RelationshipType {
         FAMILY, FRIEND, COLLEAGUE, OTHER, UNKNOWN
     }
@@ -28,40 +28,33 @@ public class Person implements Comparable<Person> {
         this.relationshipType = relationshipType;
     }
 
-    // getters
-    public int getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
     }
 
     public String getNotes() {
         return notes;
     }
 
-    public List<String> getInterests() {
-        return interests;
-    }
-
     public LocalDate getLastMeetingDate() {
         return lastMeetingDate;
     }
 
-    public RelationshipType getRelationshipType() {
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public List<String> getInterests() {
+        return interests;
+    }
+
+    public Person.RelationshipType getRelationshipType() {
         return relationshipType;
     }
 
-    // setters
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -86,27 +79,27 @@ public class Person implements Comparable<Person> {
         this.relationshipType = relationshipType;
     }
 
-    // comparable to sort by birthday
+
     @Override
     public int compareTo(Person other) {
-        return this.birthday.compareTo(other.birthday);
+        return this.name.compareToIgnoreCase(other.name);  // Default sorting by name A-Z
     }
-@Override
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return name.equalsIgnoreCase(person.name) && birthday.equals(person.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name.toLowerCase(), birthday);
+    }
+
+    @Override
     public String toString() {
         return name + " (" + relationshipType + ")";
     }
 }
-
-//List<Person> persons = personDAO.getAllPersons();
-//
-//// Sort by name:
-//persons.sort(Comparator.comparing(Person::getName));
-//
-//// Sort by recent contact:
-//        persons.sort(Comparator.comparing(Person::getLastMeetingDate).reversed());
-//
-//// Sort by old contact:
-//        persons.sort(Comparator.comparing(Person::getLastMeetingDate));
-//
-//// Sort by birthday (default Comparable):
-//        Collections.sort(persons);  // uses compareTo

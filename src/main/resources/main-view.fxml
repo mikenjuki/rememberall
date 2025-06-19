@@ -7,14 +7,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ComboBox?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.remberall.remberall.controller.MainViewController"
-            stylesheets="@com/remberall/remberall/view/styles/main-view.css">
+            stylesheets="">
     <children>
         <VBox layoutX="-1.0" prefHeight="400.0" prefWidth="600.0" styleClass="body-vbox" spacing="10">
             <children>
-                <HBox prefHeight="70.0" prefWidth="600.0" spacing="10" alignment="CENTER" styleClass="topBar-hbox">
-                    <children>
+                <HBox prefHeight="70.0" prefWidth="600.0" spacing="15" alignment="CENTER_LEFT" styleClass="topBar-hbox">
+
+                <children>
                         <!-- new contact -->
                         <Button text="➕" fx:id="addPersonButton" />
 
@@ -22,13 +24,14 @@
                         <TextField promptText="🔍 Search" fx:id="searchTextField" />
 
                         <!-- Filter -->
-                        <Button text="Filter" fx:id="filterButton" />
-                    </children>
+                    <ComboBox fx:id="sortOptionsBox" promptText="🧹" prefWidth="40" />
+
+                </children>
                 </HBox>
 
                 <!-- list of Persons -->
                 <fx:include source="person-list.fxml" />
-                <fx:include source="gift-idea-list.fxml" />
+
 
             </children>
         </VBox>

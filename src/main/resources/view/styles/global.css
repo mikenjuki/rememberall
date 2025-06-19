@@ -1,0 +1,83 @@
+/* global.css - universal styles */
+
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #f8f9fa;
+}
+
+.label {
+    -fx-text-fill: #222;
+    -fx-font-weight: normal;
+}
+
+.text-field,
+.text-area,
+.date-picker,
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6px;
+    -fx-padding: 8;
+    -fx-pref-height: 36;
+    -fx-font-size: 13px;
+}
+
+.button {
+    -fx-background-color: #2a9df4;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20;
+    -fx-border-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #238cd8;
+}
+
+.button:cancel {
+    -fx-background-color: #d9534f;
+}
+
+.button:cancel:hover {
+    -fx-background-color: #c9302c;
+}
+
+.list-cell {
+    -fx-padding: 6 12;
+    -fx-font-size: 13px;
+}
+
+.body-vbox {
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 20;
+}
+
+.topBar-hbox {
+    -fx-background-color: #ffffff;
+    -fx-padding: 10 20;        /* More space inside */
+    -fx-spacing: 15;           /* More spacing between elements */
+    -fx-alignment: center;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.text-field {
+    -fx-pref-width: 250px;     /* Wider input */
+}
+.combo-box {
+    -fx-background-color: transparent;
+
+    -fx-font-size: 16px;
+    -fx-padding: 0 5 0 5;
+    -fx-cursor: hand;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #333;
+}

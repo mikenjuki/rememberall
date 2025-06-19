@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,6 @@ public class PersonController {
         personList.setAll(persons);
         personListView.setItems(personList);
 
-        // 🟡 ADD THIS BLOCK
         personListView.setCellFactory(param -> new ListCell<Person>() {
             @Override
             protected void updateItem(Person person, boolean empty) {
@@ -62,7 +62,6 @@ public class PersonController {
                     }
                 });
 
-        // 🟡 ADD THIS DOUBLE CLICK HANDLER
         personListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 Person selectedPerson = personListView.getSelectionModel().getSelectedItem();
@@ -92,23 +91,44 @@ public class PersonController {
     private void openEditPersonForm(Person selectedPerson) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add-person.fxml"));
-
             Parent root = loader.load();
 
             AddPersonController controller = loader.getController();
-            controller.setPerson(selectedPerson); // set person to edit
+            controller.setPerson(selectedPerson);
+
+            Scene scene = new Scene(root, 450, 700);
+            scene.getStylesheets().add(getClass().getResource("/view/styles/global.css").toExternalForm());
 
             Stage stage = new Stage();
-
-            stage.setScene(new Scene(root, 450, 500)); // Set preferred width and height
+            stage.setScene(scene);
             stage.setResizable(false);
             stage.setTitle("Edit Person");
-
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void sortByName() {
+        List<Person> sorted = personList.stream()
+                .sorted(Comparator.comparing(Person::getName, String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+        personListView.setItems(FXCollections.observableArrayList(sorted));
+    }
+
+    public void sortByBirthday() {
+        List<Person> sorted = personList.stream()
+                .sorted(Comparator.comparing(Person::getBirthday))
+                .collect(Collectors.toList());
+        personListView.setItems(FXCollections.observableArrayList(sorted));
+    }
+
+    public void sortByLastContacted() {
+        List<Person> sorted = personList.stream()
+                .sorted(Comparator.comparing(Person::getLastMeetingDate).reversed())
+                .collect(Collectors.toList());
+        personListView.setItems(FXCollections.observableArrayList(sorted));
     }
 
 

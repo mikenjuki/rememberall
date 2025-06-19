@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/23.0.1"
-            fx:controller="com.remberall.remberall.controller.AddPersonController">
+            fx:controller="com.remberall.remberall.controller.AddPersonController"
+            prefWidth="500.0" prefHeight="400.0">
     <children>
-        <VBox alignment="CENTER" spacing="10" layoutX="20.0" layoutY="20.0" prefWidth="400.0">
+        <VBox spacing="12.0" alignment="TOP_CENTER" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
             <children>
-                <Label text="Add New Person" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
-                <TextField fx:id="nameField" promptText="Name" />
-                <DatePicker fx:id="birthdayPicker" promptText="Birthday" />
-                <TextArea fx:id="notesArea" promptText="Notes" />
-                <TextField fx:id="interestsField" promptText="Interests (comma-separated)" />
-                <DatePicker fx:id="lastMeetingDatePicker" promptText="Last Meeting Date" />
-                <ComboBox fx:id="relationshipBox" promptText="Relationship Type" />
-                <HBox alignment="CENTER" spacing="10">
+                <Label text="Person Details" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                <TextField fx:id="nameField" promptText="Name" maxWidth="360" />
+                <DatePicker fx:id="birthdayPicker" promptText="Birthday" maxWidth="360" />
+                <TextArea fx:id="notesArea" promptText="Notes" prefRowCount="3" maxWidth="360" />
+                <TextField fx:id="interestsField" promptText="Interests (comma-separated)" maxWidth="360" />
+                <DatePicker fx:id="lastMeetingDatePicker" promptText="Last Meeting Date" maxWidth="360" />
+                <ComboBox fx:id="relationshipBox" promptText="Relationship Type" maxWidth="360" />
+                <Label text="Gift Ideas" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <ListView fx:id="giftListView" prefHeight="150.0" maxWidth="360" />
+
+                <HBox spacing="10" alignment="CENTER">
+                    <children>
+                        <Button text="Add Gift" onAction="#handleAddGift"/>
+                        <Button text="Delete Gift" onAction="#handleDeleteGift"/>
+                    </children>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER">
                     <children>
                         <Button fx:id="saveButton" text="Save" onAction="#handleSave" />
                         <Button text="Cancel" onAction="#handleCancel" />

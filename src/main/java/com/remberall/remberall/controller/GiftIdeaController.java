@@ -16,7 +16,7 @@ public class GiftIdeaController {
     private final GiftIdeaDAO giftDAO = new GiftIdeaDAO();
     private final ObservableList<GiftIdea> gifts = FXCollections.observableArrayList();
 
-    // Singleton instance
+    // singleton instance
     private static GiftIdeaController instance;
 
     public GiftIdeaController() {
@@ -32,11 +32,8 @@ public class GiftIdeaController {
     }
 
     public void loadGiftsFor(Person person) {
-        if (person == null) {
-            gifts.clear();
-        } else {
-            List<GiftIdea> fromDb = giftDAO.getGiftIdeasByPerson(person.getId());
-            gifts.setAll(fromDb);
-        }
+        if (person == null) return;
+        List<GiftIdea> gifts = giftDAO.getGiftIdeasByPerson(person.getId());
+        giftListView.getItems().setAll(gifts);
     }
 }
