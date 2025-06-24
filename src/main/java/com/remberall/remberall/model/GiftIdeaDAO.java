@@ -3,8 +3,11 @@ package com.remberall.remberall.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GiftIdeaDAO {
+    private static final Logger LOGGER = Logger.getLogger(GiftIdeaDAO.class.getName());
 
     // fetch all gifts for a specific person
     public List<GiftIdea> getGiftIdeasByPerson(int personId) {
@@ -30,6 +33,7 @@ public class GiftIdeaDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error fetching gift ideas for person ID: " + personId, e);
         }
 
         return gifts;
@@ -91,6 +95,26 @@ public class GiftIdeaDAO {
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setInt(1, giftId);
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Deletes all gift ideas associated with a specific person.
+     * @param personId The ID of the person whose gift ideas are to be deleted.
+     * @return true if the deletion was successful, false otherwise.
+     */
+    public boolean deleteGiftIdeasByPerson(int personId) {
+        String query = "DELETE FROM gift_idea WHERE person_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, personId);
             int affectedRows = stmt.executeUpdate();
             return affectedRows > 0;
 

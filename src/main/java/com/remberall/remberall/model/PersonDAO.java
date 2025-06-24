@@ -5,9 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PersonDAO {
-
+    private final GiftIdeaDAO giftIdeaDAO = new GiftIdeaDAO();
+    private static final Logger LOGGER = Logger.getLogger(PersonDAO.class.getName());
     // fetch all persons from DB
     public List<Person> getAllPersons() {
         List<Person> persons = new ArrayList<>();
@@ -32,6 +35,7 @@ public class PersonDAO {
                             ? Person.RelationshipType.valueOf(relTypeStr.toUpperCase())
                             : Person.RelationshipType.UNKNOWN;
                 } catch (IllegalArgumentException e) {
+                    LOGGER.log(Level.WARNING, "Unknown relationship type encountered: " + relTypeStr, e);
                     relationshipType = Person.RelationshipType.UNKNOWN;
                 }
 
@@ -41,6 +45,7 @@ public class PersonDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error fetching all persons", e);
         }
 
         return persons;
@@ -96,6 +101,8 @@ public class PersonDAO {
 
     // delete person from db
     public boolean deletePerson(int personId) {
+// First, delete all associated gift ideas for this person
+        giftIdeaDAO.deleteGiftIdeasByPerson(personId);
         String query = "DELETE FROM person WHERE id = ?";
 
         try (Connection conn = DBConnection.getConnection();

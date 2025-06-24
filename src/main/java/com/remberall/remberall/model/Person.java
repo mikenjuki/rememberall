@@ -82,7 +82,7 @@ public class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person other) {
-        return this.name.compareToIgnoreCase(other.name); //default
+        return this.name.compareToIgnoreCase(other.name);
     }
 
     @Override

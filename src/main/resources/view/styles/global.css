@@ -1,83 +1,143 @@
-/* global.css - universal styles */
-
+/* ------------- CORE ------------- */
 .root {
     -fx-font-family: "Segoe UI", sans-serif;
-    -fx-font-size: 13px;
-    -fx-background-color: #f8f9fa;
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;          /* pure white canvas */
 }
 
+/* ------------- TEXT ------------- */
 .label {
-    -fx-text-fill: #222;
-    -fx-font-weight: normal;
+-fx-text-fill: #000000;
 }
 
+/* ------------- INPUTS ------------- */
 .text-field,
 .text-area,
 .date-picker,
 .combo-box {
-    -fx-background-color: white;
-    -fx-border-color: #ccc;
-    -fx-border-radius: 6px;
-    -fx-padding: 8;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-radius: 4px;
+    -fx-padding: 8 10;
     -fx-pref-height: 36;
-    -fx-font-size: 13px;
 }
 
-.button {
-    -fx-background-color: #2a9df4;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-padding: 8 20;
-    -fx-border-radius: 8px;
+/* Specific styling for TextArea to remove inset border */
+.text-area {
+    -fx-background-color: #ffffff; /* Ensure the main background is white */
+    -fx-border-color: #000000;
+    -fx-border-radius: 4px;
+    -fx-padding: 8 10;
+     -fx-wrap-text: true;/* Outer padding of the control */
+}
+
+
+.text-area .content {
+    -fx-background-color: #ffffff; /* Ensure the content background is white */
+    -fx-background-insets: 0;      /* Crucial: Removes any internal background spacing */
+    -fx-padding: 0;                /* Remove default padding from the content area */
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent; /* Make scroll pane background transparent */
+    -fx-background-insets: 0;          /* Remove any insets for the scroll pane */
+}
+
+.text-area .scroll-pane .viewport {
+    -fx-background-color: transparent; /* Transparent viewport */
+}
+
+
+/* Specific styling for DatePicker to prevent "inset" and "squished icon" */
+.date-picker {
+    -fx-background-color: #ffffff;   /* Background color for the entire date picker */
+    -fx-border-color: #000000;       /* Border color for the entire date picker */
+    -fx-border-radius: 4px;          /* Rounded corners */
+    -fx-pref-height: 36px;           /* Maintain consistent height with other inputs */
+    -fx-padding: 0;                  /* Crucial: Remove default padding of the DatePicker container */
+    -fx-font-size: 14px;             /* Ensure font size consistency */
     -fx-cursor: hand;
 }
 
-.button:hover {
-    -fx-background-color: #238cd8;
+/* Style the text input field *inside* the DatePicker */
+.date-picker .text-field {
+    -fx-background-color: transparent; /* No separate background, blends with parent */
+    -fx-border-color: transparent;     /* No separate border */
+    -fx-padding: 8 0 8 10;             /* Padding: top right bottom left (adjust right padding for icon space) */
+    -fx-alignment: CENTER_LEFT;        /* Align text to the left */
 }
 
-.button:cancel {
-    -fx-background-color: #d9534f;
+
+
+
+
+/* ------------- BUTTONS ------------- */
+.BTN {
+    -fx-background-color: #2B5467;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 8 10;
+    -fx-border-radius: 4px;
+    -fx-background-insets: 0;
+    -fx-cursor: hand;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 30px;
+}
+.button:hover { -fx-background-color: #333333; }
+
+
+.add-button {
+    -fx-background-color: #64C3EF;
+    -fx-cursor: hand;
+}
+.add-button:hover  { -fx-background-color: #68CAF7; }
+
+.cancel-button {
+    -fx-background-color: #CC0132;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 30px;
+
+}
+.cancel-button:hover {
+    -fx-background-color: #AB485F;
 }
 
-.button:cancel:hover {
-    -fx-background-color: #c9302c;
+/*filter button*/
+.filter-button {
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
 }
 
+.icon-button .text { -fx-text-alignment: center; }
+
+/* ------------- LIST VIEW ------------- */
 .list-cell {
     -fx-padding: 6 12;
-    -fx-font-size: 13px;
 }
 
-.body-vbox {
-    -fx-background-color: #f9f9f9;
-    -fx-padding: 20;
+/* ------------- LAYOUT HELPERS ------------- */
+.topBar-hbox   { -fx-padding: 10 20; -fx-spacing: 15; }
+.body-vbox     { -fx-padding: 20; -fx-spacing: 10; }
+
+.form-grid     { /* new helper for the Add-Person layout */
+    -fx-vgap: 15;
+    -fx-hgap: 15;
 }
 
-.topBar-hbox {
-    -fx-background-color: #ffffff;
-    -fx-padding: 10 20;        /* More space inside */
-    -fx-spacing: 15;           /* More spacing between elements */
-    -fx-alignment: center;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 0 0 1 0;
+/* --- LISTVIEW: */
+.list-view {
+    -fx-control-inner-background: #ffffff;    /* base colour */
 }
 
-.text-field {
-    -fx-pref-width: 250px;     /* Wider input */
-}
-.combo-box {
-    -fx-background-color: transparent;
+.list-cell:odd  { -fx-background-color: #64C3EF; -fx-text-fill: #000000; }
+.list-cell:even { -fx-background-color: #ffffff; -fx-text-fill: #000000; }
 
-    -fx-font-size: 16px;
-    -fx-padding: 0 5 0 5;
-    -fx-cursor: hand;
-}
-
-.combo-box .arrow-button {
-    -fx-background-color: transparent;
-}
-
-.combo-box .list-cell {
-    -fx-text-fill: #333;
-}
+/* selection: dark grey, *not* blue
+.list-cell:selected,
+.list-cell:selected:focused   {
+    -fx-background-color: #4d4d4d;
+    -fx-text-fill: #ffffff;
+}*/

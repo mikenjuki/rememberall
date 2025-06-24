@@ -5,6 +5,7 @@ module com.remberall.remberall {
     requires org.kordamp.bootstrapfx.core;
     requires javafx.controls;
     requires java.sql;
+    requires java.desktop;
 
     opens com.remberall.remberall to javafx.fxml;
     exports com.remberall.remberall;
