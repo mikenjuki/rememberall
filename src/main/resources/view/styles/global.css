@@ -2,7 +2,7 @@
 .root {
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-font-size: 14px;
-    -fx-background-color: #ffffff;          /* pure white canvas */
+    -fx-background-color: #ffffff;
 }
 
 /* ------------- TEXT ------------- */
@@ -24,47 +24,46 @@
 
 /* Specific styling for TextArea to remove inset border */
 .text-area {
-    -fx-background-color: #ffffff; /* Ensure the main background is white */
+    -fx-background-color: #ffffff;
     -fx-border-color: #000000;
     -fx-border-radius: 4px;
     -fx-padding: 8 10;
-     -fx-wrap-text: true;/* Outer padding of the control */
+     -fx-wrap-text: true;
 }
 
 
 .text-area .content {
-    -fx-background-color: #ffffff; /* Ensure the content background is white */
-    -fx-background-insets: 0;      /* Crucial: Removes any internal background spacing */
-    -fx-padding: 0;                /* Remove default padding from the content area */
+    -fx-background-color: #ffffff;
+    -fx-padding: 0;
 }
 
 .text-area .scroll-pane {
-    -fx-background-color: transparent; /* Make scroll pane background transparent */
-    -fx-background-insets: 0;          /* Remove any insets for the scroll pane */
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
 }
 
 .text-area .scroll-pane .viewport {
-    -fx-background-color: transparent; /* Transparent viewport */
+    -fx-background-color: transparent;
 }
 
 
 /* Specific styling for DatePicker to prevent "inset" and "squished icon" */
 .date-picker {
-    -fx-background-color: #ffffff;   /* Background color for the entire date picker */
-    -fx-border-color: #000000;       /* Border color for the entire date picker */
-    -fx-border-radius: 4px;          /* Rounded corners */
-    -fx-pref-height: 36px;           /* Maintain consistent height with other inputs */
-    -fx-padding: 0;                  /* Crucial: Remove default padding of the DatePicker container */
-    -fx-font-size: 14px;             /* Ensure font size consistency */
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-radius: 4px;
+    -fx-pref-height: 36px;
+    -fx-padding: 0;
+    -fx-font-size: 14px;
     -fx-cursor: hand;
 }
 
 /* Style the text input field *inside* the DatePicker */
 .date-picker .text-field {
-    -fx-background-color: transparent; /* No separate background, blends with parent */
-    -fx-border-color: transparent;     /* No separate border */
-    -fx-padding: 8 0 8 10;             /* Padding: top right bottom left (adjust right padding for icon space) */
-    -fx-alignment: CENTER_LEFT;        /* Align text to the left */
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 8 0 8 10;
+    -fx-alignment: CENTER_LEFT;
 }
 
 
@@ -114,9 +113,51 @@
 .icon-button .text { -fx-text-alignment: center; }
 
 /* ------------- LIST VIEW ------------- */
-.list-cell {
+/* Apply list-cell styling specifically to elements within a ListView */
+.list-view .list-cell {
     -fx-padding: 6 12;
 }
+
+/* Alternating colors only for ListView cells */
+.list-view .list-cell:odd  { -fx-background-color: #64C3EF; -fx-text-fill: #000000; }
+.list-view .list-cell:even { -fx-background-color: #ffffff; -fx-text-fill: #000000; }
+
+/* ------------- ComboBox Dropdown Styling ------------- */
+/* Style for the popup list of the ComboBox */
+.combo-box-popup .list-view {
+    -fx-background-color: #ffffff; /* Ensure background is white */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2); /* Subtle shadow for dropdown */
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4px;
+     -fx-cursor: hand;
+}
+
+/* Style for individual cells within the ComboBox dropdown */
+.combo-box-popup .list-cell {
+    -fx-background-color: #ffffff; /* Default background */
+    -fx-text-fill: #000000;        /* Default text color */
+    -fx-padding: 8 10;             /* Padding for dropdown items */
+}
+
+/* Ensure no alternating colors in ComboBox dropdown */
+.combo-box-popup .list-cell:odd,
+.combo-box-popup .list-cell:even {
+    -fx-background-color: #ffffff; /* Force white background for all cells */
+    -fx-text-fill: #000000;        /* Force black text for all cells */
+}
+
+/* Hover effect for ComboBox dropdown items */
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #e0e0e0; /* Light gray on hover */
+    -fx-text-fill: #000000;        /* Keep text black on hover */
+}
+
+/* Selected item in ComboBox dropdown */
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #2B5467; /* Darker blue for selected item */
+    -fx-text-fill: #ffffff;        /* White text for selected item */
+}
+
 
 /* ------------- LAYOUT HELPERS ------------- */
 .topBar-hbox   { -fx-padding: 10 20; -fx-spacing: 15; }
@@ -126,18 +167,3 @@
     -fx-vgap: 15;
     -fx-hgap: 15;
 }
-
-/* --- LISTVIEW: */
-.list-view {
-    -fx-control-inner-background: #ffffff;    /* base colour */
-}
-
-.list-cell:odd  { -fx-background-color: #64C3EF; -fx-text-fill: #000000; }
-.list-cell:even { -fx-background-color: #ffffff; -fx-text-fill: #000000; }
-
-/* selection: dark grey, *not* blue
-.list-cell:selected,
-.list-cell:selected:focused   {
-    -fx-background-color: #4d4d4d;
-    -fx-text-fill: #ffffff;
-}*/
